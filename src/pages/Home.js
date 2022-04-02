@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getDocs, collection, deleteDoc, doc } from "firebase/firestore";
 import { auth, db } from "../Firebase-config";
-import { async } from "@firebase/util";
 
 function Home({ isAuth }) {
   const [postLists, setPostLists] = useState([]);
@@ -18,6 +17,7 @@ function Home({ isAuth }) {
       setPostLists(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
     getPosts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [deletePost]);
 
   return (
@@ -47,7 +47,7 @@ function Home({ isAuth }) {
                 <h3 className="author">@{post.author.name}</h3>
               </div>
               <div className="logo">
-                <img src={post.author.img} />
+                <img src={post.author.img} alt={post.author.img} />
               </div>
             </div>
           </div>
